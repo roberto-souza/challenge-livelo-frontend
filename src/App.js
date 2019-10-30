@@ -1,22 +1,23 @@
 import React from 'react';
-import logo from './assets/rocket.svg';
-import astronaut from './assets/astronaut.svg';
-import './App.css';
+import { Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
-function App() {
+import './dependencies';
+
+import history from '~/services/history';
+import GlobalStyles from '~/styles/global';
+import Application from '~/pages';
+import store from './store';
+
+export default function App() {
   return (
-    <div className="App">
-      <img className="logo" src={logo} alt="Rocketseat Logo" />
-      <h2>Welcome to OmniStack!</h2>
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        Learn React
-      </a>
-      <img className="astronaut" src={astronaut} alt="Astronaut" />
-    </div>
+    <Provider store={store}>
+      <Router history={history}>
+        <GlobalStyles />
+        <ToastContainer autoClose={3000} />
+        <Application />
+      </Router>
+    </Provider>
   );
 }
-
-export default App;
